@@ -3,6 +3,7 @@
 var gulp            = require('gulp'),
     connect         = require('gulp-connect'),
     gulpLoadPlugins = require('gulp-load-plugins'),
+    browserSync     = require('browser-sync'),
     plugins         = gulpLoadPlugins(),
     webpack         = require('webpack'),
     ComponentPlugin = require("component-webpack-plugin"),
@@ -38,6 +39,17 @@ gulp.task('connect', function() {
   });
 });
 
+gulp.task('browser-sync', function() {
+  browserSync({
+    server: {
+      baseDir: "./"
+    },
+    // proxy: "192.168.1.3:8000",
+    browser: "google chrome canary",
+    online: true
+  });
+});
+
 // gulp.task('webserver', function() {
 //   gulp.src('app')
 //     .pipe( plugins.webserver({
@@ -62,7 +74,8 @@ gulp.task('sass', function() {
         "last 1 versions", "> 10%", "ie 9"
         ))
     .pipe( gulp.dest( config.SASS.build ) )
-    .pipe( plugins.livereload() );
+    .pipe( browserSync.reload({ stream: true }) );
+    // .pipe( plugins.livereload() );
 });
 
 
@@ -138,7 +151,9 @@ gulp.task('set-env-prod', function() {
 gulp.task('js', function () {
   gulp.src( config.JS.buildFiles )
     .pipe( plugins.changed ( config.JS.buildFiles ))
-    .pipe( plugins.livereload() );
+    .pipe( plugins.filter('**/*.js'))
+    .pipe( browserSync.reload({ stream: true }) );
+    // .pipe( plugins.livereload() );
 });
 
 
@@ -147,7 +162,8 @@ gulp.task('js', function () {
 // HTML TEMPORARIO --------------------------------------------------------------
 gulp.task('html', function () {
   gulp.src( config.HTML.build )
-    .pipe( plugins.livereload() );
+    .pipe( browserSync.reload({ stream: true }) );
+    // .pipe( plugins.livereload() );
 });
 
 
@@ -162,7 +178,7 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', ['prod'] );
-gulp.task('dev', ['set-env-dev', 'connect', 'watch'] );
-gulp.task('prod', ['set-env-prod', 'connect', 'watch'] );
+gulp.task('dev', ['set-env-dev', 'browser-sync', 'watch'] );
+gulp.task('prod', ['set-env-prod', 'browser-sync', 'watch'] );
 
 gulp.task('shipit', ['set-env-prod', 'webpack'] );

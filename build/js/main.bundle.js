@@ -1,6 +1,6 @@
 /*!
  * AngularJSTutorial
- * 0.1.0:1405507824008 [development build]
+ * 0.1.0:1405523750222 [development build]
  */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -48,22 +48,16 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
 	'use strict';
-	__webpack_require__(1);
 	
-	var phonecatApp = angular.module('phonecatApp', []);
+	var angular = __webpack_require__(1);
 	
-	phonecatApp.controller('PhoneListCtrl', function ($scope) {
-	  $scope.phones = [
-	    {'name': 'Nexus S',
-	     'snippet': 'Fast just got faster with Nexus S.'},
-	    {'name': 'Motorola XOOM™ with Wi-Fi',
-	     'snippet': 'The Next, Next Generation tablet.'},
-	    {'name': 'MOTOROLA XOOM™',
-	     'snippet': 'The Next, Next Generation tablet.'}
-	  ];
-	});
+	var app = angular.module('app', []);
+	
+	app.controller('phoneListCtrl', [
+	  '$scope',
+	  __webpack_require__(3)
+	]);
 
 
 /***/ },
@@ -21857,6 +21851,25 @@
 	})(window, document);
 	
 	!window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>');
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = function($scope) {
+	
+	  $scope.phones = [
+	    {'name': 'Nexus S',
+	     'snippet': 'Fast just got faster with Nexus S.'},
+	    {'name': 'Motorola XOOM™ with Wi-Fi',
+	     'snippet': 'The Next, Next Generation tablet.'},
+	    {'name': 'MOTOROLA XOOM™',
+	     'snippet': 'The Next, Next Generation tablet.'}
+	  ];
+	};
+
 
 /***/ }
 /******/ ])
