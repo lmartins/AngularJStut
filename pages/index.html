@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="phonecatApp" >
+<head>
+  <meta charset="UTF-8">
+  <title>AngularApp</title>
+  <link rel="stylesheet" href="../build/css/main.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.css" >
+</head>
+<body ng-controller="PhoneListCtrl">
+
+  <div class="container">
+    <ul>
+      <li ng-repeat="phone in phones">
+        <span>{{ phone.name }}</span>
+        <p>{{ phone.snippet }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <script src="../build/js/main.bundle.js" charset="utf-8"></script>
+
+</body>
+</html>
